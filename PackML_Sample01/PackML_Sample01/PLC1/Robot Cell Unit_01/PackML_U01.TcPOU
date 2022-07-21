@@ -93,12 +93,12 @@ END_VAR
                       <n n="ElementGroupId" />
                       <v n="Text">"PackML Unit Controller :
 
-Unit State Manager &amp; Mode Manager"</v>
+Unit State &amp; Mode Manager"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">77L</v>
                     </o>
                     <v n="PageArea">0</v>
-                    <v n="Bounds">"12, 5, 0, 0"</v>
+                    <v n="Bounds">"14, 5, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">76L</v>
@@ -186,6 +186,15 @@ Unit State Manager &amp; Mode Manager"</v>
                           <v n="PretendsToBeConnected">false</v>
                           <v n="Id">161L</v>
                         </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">220L</v>
+                        </o>
                       </l2>
                     </o>
                     <o n="Texts" t="CFCItemList">
@@ -217,6 +226,13 @@ Unit State Manager &amp; Mode Manager"</v>
                           <v n="Text">"eState"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">162L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"bWdStatus"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">221L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
@@ -701,7 +717,41 @@ Unit State Manager &amp; Mode Manager"</v>
               <o n="RoutingPathTable" t="CFCRoutingPathTable">
                 <d2 n="InnerDictionary" ckt="CFCRoutingConnection" cvt="CFCPointList">
                   <o>
-                    <v n="ConnectionId">180L</v>
+                    <v n="ConnectionId">50L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">26</v>
+                      <v n="Y">12</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">26</v>
+                        <v n="Y">12</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">33</v>
+                        <v n="Y">12</v>
+                        <v n="IsJoint">true</v>
+                        <v n="Flags">29</v>
+                      </o>
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">12</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">207L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">26</v>
                       <v n="Y">13</v>
@@ -721,64 +771,30 @@ Unit State Manager &amp; Mode Manager"</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">33</v>
+                        <v n="X">34</v>
                         <v n="Y">13</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">29</v>
                       </o>
                       <o>
-                        <v n="X">33</v>
+                        <v n="X">34</v>
                         <v n="Y">19</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">30</v>
                       </o>
                       <o>
-                        <v n="X">33</v>
-                        <v n="Y">25</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">6</v>
-                      </o>
-                      <o>
                         <v n="X">43</v>
-                        <v n="Y">25</v>
+                        <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">157L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">11</v>
-                      <v n="Y">12</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">11</v>
-                        <v n="Y">12</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">12</v>
-                        <v n="Y">12</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">179L</v>
+                    <v n="ConnectionId">163L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">26</v>
-                      <v n="Y">12</v>
+                      <v n="Y">13</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -790,31 +806,19 @@ Unit State Manager &amp; Mode Manager"</v>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">26</v>
-                        <v n="Y">12</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">34</v>
-                        <v n="Y">12</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">29</v>
                       </o>
                       <o>
-                        <v n="X">34</v>
-                        <v n="Y">18</v>
-                        <v n="IsJoint">true</v>
-                        <v n="Flags">30</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
-                        <v n="Y">24</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">6</v>
-                      </o>
-                      <o>
                         <v n="X">43</v>
-                        <v n="Y">24</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -877,10 +881,10 @@ Unit State Manager &amp; Mode Manager"</v>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">207L</v>
+                    <v n="ConnectionId">157L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">26</v>
-                      <v n="Y">13</v>
+                      <v n="X">11</v>
+                      <v n="Y">12</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -891,26 +895,14 @@ Unit State Manager &amp; Mode Manager"</v>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">26</v>
-                        <v n="Y">13</v>
+                        <v n="X">11</v>
+                        <v n="Y">12</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">33</v>
-                        <v n="Y">13</v>
-                        <v n="IsJoint">true</v>
-                        <v n="Flags">29</v>
-                      </o>
-                      <o>
-                        <v n="X">33</v>
-                        <v n="Y">19</v>
-                        <v n="IsJoint">true</v>
-                        <v n="Flags">30</v>
-                      </o>
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">19</v>
+                        <v n="X">12</v>
+                        <v n="Y">12</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -945,10 +937,10 @@ Unit State Manager &amp; Mode Manager"</v>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">163L</v>
+                    <v n="ConnectionId">179L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">26</v>
-                      <v n="Y">13</v>
+                      <v n="Y">12</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -960,19 +952,31 @@ Unit State Manager &amp; Mode Manager"</v>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">26</v>
-                        <v n="Y">13</v>
+                        <v n="Y">12</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">33</v>
-                        <v n="Y">13</v>
+                        <v n="Y">12</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">29</v>
                       </o>
                       <o>
+                        <v n="X">33</v>
+                        <v n="Y">18</v>
+                        <v n="IsJoint">true</v>
+                        <v n="Flags">30</v>
+                      </o>
+                      <o>
+                        <v n="X">33</v>
+                        <v n="Y">24</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
                         <v n="X">43</v>
-                        <v n="Y">13</v>
+                        <v n="Y">24</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -999,13 +1003,13 @@ Unit State Manager &amp; Mode Manager"</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">34</v>
+                        <v n="X">33</v>
                         <v n="Y">12</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">29</v>
                       </o>
                       <o>
-                        <v n="X">34</v>
+                        <v n="X">33</v>
                         <v n="Y">18</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">30</v>
@@ -1019,10 +1023,10 @@ Unit State Manager &amp; Mode Manager"</v>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">50L</v>
+                    <v n="ConnectionId">180L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">26</v>
-                      <v n="Y">12</v>
+                      <v n="Y">13</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -1034,19 +1038,31 @@ Unit State Manager &amp; Mode Manager"</v>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">26</v>
-                        <v n="Y">12</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">34</v>
-                        <v n="Y">12</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">true</v>
                         <v n="Flags">29</v>
                       </o>
                       <o>
+                        <v n="X">34</v>
+                        <v n="Y">19</v>
+                        <v n="IsJoint">true</v>
+                        <v n="Flags">30</v>
+                      </o>
+                      <o>
+                        <v n="X">34</v>
+                        <v n="Y">25</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
                         <v n="X">43</v>
-                        <v n="Y">12</v>
+                        <v n="Y">25</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>

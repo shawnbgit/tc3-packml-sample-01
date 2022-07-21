@@ -9,29 +9,36 @@ VAR_OUTPUT
 	eStateCommand	: E_PMLCommand := ePMLCommand_Abort;	//Command for a new state from superior unit
 	eMode 			: DINT;
 	eState 			: E_PMLState;
+	bWdStatus		: BOOL;
 
 END_VAR
 VAR
-fbPML_StateMachine: PML_StateMachine;
-fbPML_ModeManager : PML_UnitModeManager;
-stPackTags : ST_PackMLv30Ext;
-rtChangeState : R_TRIG;
-rtChangeMode : R_TRIG;
+fbPML_StateMachine	: PML_StateMachine;
+fbPML_ModeManager	: PML_UnitModeManager;
+stPackTags 			: ST_PackMLv30Ext;
+rtChangeState		: R_TRIG;
+rtChangeMode 		: R_TRIG;
+
+
+wdState				: INT;					// Watchdog Vars
+timeout 			: ARRAY [1..4] OF TON;	// Watchdog Vars
+wdAlarm 			: ARRAY [1..4] OF BOOL;	// Watchdog Vars
+
+
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbPML_StateMachine(
-	eState=>eState);
+      <ST><![CDATA[fbPML_StateMachine();
+fbPML_ModeManager();
 
-eStateCommand	:= fbPML_StateMachine.eCommand;
-eMode			:= fbPML_StateMachine.eMode;	
-
+// State Manager Logic
 rtChangeState (CLK := stPackTags.Command.CmdChangeRequest);
 	IF rtChangeState.Q THEN	
 		fbPML_StateMachine.eCommand := stPackTags.Command.CntrlCmd;
 	END_IF
 
+// Mode Manager Logic	
 rtChangeMode (CLK := stPackTags.Command.UnitModeChangeRequest);
 	IF rtChangeMode.Q THEN
 		fbPML_ModeManager.eModeCommand	:= stPackTags.Command.UnitMode;
@@ -41,13 +48,23 @@ rtChangeMode (CLK := stPackTags.Command.UnitModeChangeRequest);
 		IF fbPML_ModeManager.bDone THEN
 			fbPML_ModeManager.bExecute := FALSE;
 		END_IF
+		
+// Outputs to SubUnits		
+eState 			:= fbPML_StateMachine.eState;	// output of local PML state
+eStateCommand	:= fbPML_StateMachine.eCommand;	// output of local PML mode command
+eMode			:= fbPML_StateMachine.eMode;	// output of local PML mode 
 
+// Inputs from SubUnits
 fbPML_StateMachine.stSubUnitInfoRef.ArraySize		:= SIZEOF(stSubUnitInfo);
 fbPML_StateMachine.stSubUnitInfoRef.NoOfSubUnits	:= 4;
 fbPML_StateMachine.stSubUnitInfoRef.pArray			:= ADR(stSubUnitInfo);
 
-stPackTags.Status.StateCurrent := fbPML_StateMachine.eState;
+// Watchdog to monitor the PML State of the SubUnits
+A_PMLWatchdog();
+	bWdStatus := WdAlarm[1] OR WdAlarm[2] OR WdAlarm[3] OR WdAlarm[4];
 
+	
+// Method Calls for each PML State	
 CASE eState OF
 	ePMLState_Undefined:
 		M_Undefined();
@@ -89,6 +106,88 @@ END_CASE]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{5b089b78-2d2a-467f-9757-b140acb3b63d}" />
     <Folder Name="Properties" Id="{328ed5ed-6360-4bb7-8672-1ad4c0a7ef7e}" />
+    <Action Name="A_PMLWatchdog" Id="{8ac386db-4cf3-420f-9f5a-f6ffde21fe88}">
+      <Implementation>
+        <ST><![CDATA[timeout[1](PT:= T#7S);
+timeout[2](PT:= T#7S);
+timeout[3](PT:= T#7S);
+timeout[4](PT:= T#7S);
+
+
+CASE wdState OF
+	
+	0:
+		IF stSubUnitInfo[1].Active THEN
+			timeout[1].IN	:= TRUE;
+			wdState			:= 5;
+		ELSE
+			wdState			:= 10;	
+		END_IF
+	5:
+		IF stSubUnitInfo[1].eState = eState THEN
+			wdAlarm[1]		:= FALSE;
+			timeout[1].IN	:= FALSE;
+			wdState			:= 10;
+		ELSIF timeout[1].Q THEN
+			wdAlarm[1]		:= TRUE;
+			timeout[1].IN	:= FALSE;
+			wdState			:= 10;
+		END_IF
+	10:
+		IF stSubUnitInfo[2].Active THEN
+			timeout[2].IN	:= TRUE;
+			wdState			:= 15;
+		ELSE
+			wdState			:= 20;	
+		END_IF
+	15:
+		IF stSubUnitInfo[2].eState = eState THEN
+			wdAlarm[2]		:= FALSE;
+			timeout[2].IN	:= FALSE;
+			wdState			:= 20;
+		ELSIF timeout[2].Q THEN
+			wdAlarm[2]		:= TRUE;
+			timeout[2].IN	:= FALSE;
+			wdState			:= 20;
+		END_IF
+	20:
+		IF stSubUnitInfo[3].Active THEN
+			timeout[3].IN	:= TRUE;
+			wdState			:= 25;
+		ELSE
+			wdState			:= 30;
+		END_IF
+	25:
+		IF stSubUnitInfo[3].eState = eState THEN
+			wdAlarm[3]		:= FALSE;
+			timeout[3].IN	:= FALSE;
+			wdState			:= 30;
+		ELSIF timeout[3].Q THEN
+			wdAlarm[3]		:= TRUE;
+			timeout[3].IN	:= FALSE;
+			wdState			:= 30;
+		END_IF
+	30:
+		IF stSubUnitInfo[4].Active THEN
+			timeout[4].IN	:= TRUE;
+			wdState			:= 35;
+		ELSE
+			wdState			:= 0;
+		END_IF
+	35:
+		IF stSubUnitInfo[4].eState = eState THEN
+			wdAlarm[4]		:= FALSE;
+			timeout[4].IN	:= FALSE;
+			wdState			:= 0;
+		ELSIF timeout[4].Q THEN
+			wdAlarm[4]		:= TRUE;
+			timeout[4].IN	:= FALSE;
+			wdState			:= 0;
+		END_IF	
+		
+END_CASE]]></ST>
+      </Implementation>
+    </Action>
     <Method Name="M_Aborted" Id="{fba60604-4588-400d-91a9-dd653bcbf5d0}" FolderPath="Methods\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Aborted
