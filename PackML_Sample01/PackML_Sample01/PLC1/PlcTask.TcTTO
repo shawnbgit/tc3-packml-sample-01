@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Task Name="PlcTask" Id="{af8afb2f-4ad9-401f-815f-e5a808ecb3c7}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>20</Priority>
+    <PouCall>
+      <Name>PackML_U01</Name>
+    </PouCall>
+    <TaskFBGuid>{c9bbf990-c801-4cb8-9903-db0cac056142}</TaskFBGuid>
+    <Fb_init>{6873cf37-e78c-4cc0-9e3b-e1ec7ad81a10}</Fb_init>
+    <Fb_exit>{c89b945a-03fb-4f4c-9f0c-05cc5073ccda}</Fb_exit>
+    <CycleUpdate>{8ea5b256-e248-4023-8b07-5ceee61ee863}</CycleUpdate>
+    <PostCycleUpdate>{836b9143-103f-4dd1-a225-702496550bf4}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_PMLUnit" Id="{76d81add-3ba6-490e-91ea-f5b930ee47b5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PMLUnit IMPLEMENTS I_UnitState
+VAR_INPUT
+	stSubUnitInfo	: ARRAY [1..4] OF ST_PMLSubUnitInfo;	//Informations about the Subunits
+END_VAR
+VAR_OUTPUT
+	eStateCommand	: E_PMLCommand := ePMLCommand_Abort;	//Command for a new state from superior unit
+	eMode 			: DINT;
+	eState 			: E_PMLState;
+
+END_VAR
+VAR
+fbPML_StateMachine: PML_StateMachine;
+fbPML_ModeManager : PML_UnitModeManager;
+stPackTags : ST_PackMLv30Ext;
+rtChangeState : R_TRIG;
+rtChangeMode : R_TRIG;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbPML_StateMachine(
+	eState=>eState);
+
+eStateCommand	:= fbPML_StateMachine.eCommand;
+eMode			:= fbPML_StateMachine.eMode;	
+
+rtChangeState (CLK := stPackTags.Command.CmdChangeRequest);
+	IF rtChangeState.Q THEN	
+		fbPML_StateMachine.eCommand := stPackTags.Command.CntrlCmd;
+	END_IF
+
+rtChangeMode (CLK := stPackTags.Command.UnitModeChangeRequest);
+	IF rtChangeMode.Q THEN
+		fbPML_ModeManager.eModeCommand	:= stPackTags.Command.UnitMode;
+		fbPML_ModeManager.bExecute		:= TRUE;
+	END_IF
+		
+		IF fbPML_ModeManager.bDone THEN
+			fbPML_ModeManager.bExecute := FALSE;
+		END_IF
+
+fbPML_StateMachine.stSubUnitInfoRef.ArraySize		:= SIZEOF(stSubUnitInfo);
+fbPML_StateMachine.stSubUnitInfoRef.NoOfSubUnits	:= 4;
+fbPML_StateMachine.stSubUnitInfoRef.pArray			:= ADR(stSubUnitInfo);
+
+stPackTags.Status.StateCurrent := fbPML_StateMachine.eState;
+
+CASE eState OF
+	ePMLState_Undefined:
+		M_Undefined();
+	ePMLState_Clearing:
+		M_Clearing();
+	ePMLState_Stopped:
+		M_Stopped();
+	ePMLState_Starting:
+		M_Starting();
+	ePMLState_Idle:
+		M_Idle();
+	ePMLState_Suspended:
+		M_Suspended();
+	ePMLState_Execute:
+		M_Execute();
+	ePMLState_Stopping:
+		M_Stopping();
+	ePMLState_Aborting:
+		M_Aborting();
+	ePMLState_Aborted:
+		M_Aborted();
+	ePMLState_Holding:
+		M_Holding();
+	ePMLState_Held:
+		M_Held();
+	ePMLState_Unholding:
+		M_Unholding();
+	ePMLState_Suspending:
+		M_Suspending();
+	ePMLState_Unsuspending:
+		M_Unsuspending();
+	ePMLState_Resetting:
+		M_Resetting();
+	ePMLState_Completing:
+		M_Completing();
+	ePMLState_Complete:
+		M_Complete();
+END_CASE]]></ST>
+    </Implementation>
+    <Folder Name="Methods" Id="{5b089b78-2d2a-467f-9757-b140acb3b63d}" />
+    <Folder Name="Properties" Id="{328ed5ed-6360-4bb7-8672-1ad4c0a7ef7e}" />
+    <Method Name="M_Aborted" Id="{fba60604-4588-400d-91a9-dd653bcbf5d0}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Aborted
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Aborting" Id="{d6ba3c67-8fba-46c9-a5d0-b49d7852c9de}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Aborting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Clearing" Id="{23f6b7f4-b18a-4812-8a92-218b357f5daf}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Clearing
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Complete" Id="{97527de1-1ae8-4069-8fb8-c9c8d0501ac8}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Complete
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Completing" Id="{294a2300-f39d-4b55-8788-6d4ce03d70dc}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Completing
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Execute" Id="{b824c714-1c4c-4058-b256-fb25750fe1d4}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Held" Id="{61d0b5bd-d88d-46cc-81dd-b5df83b3ec1f}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Held
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Holding" Id="{1af8cb2b-36ac-461d-b019-af3df1ab8634}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Holding
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Idle" Id="{aef35c11-f5f1-40d6-9ee2-b9df3b4388a1}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Idle
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Resetting" Id="{6ec0d892-db77-427c-8e90-7274bf7d178e}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Resetting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Starting" Id="{b9ed8a13-a400-4b6c-b112-4f0ec389b84e}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Starting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_StateComplete" Id="{5468dcf1-3449-4fee-8be2-b88f8d1de6ce}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_StateComplete
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbPML_StateMachine.M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stopped" Id="{154c7d10-3861-4016-8b90-fde1b202d946}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Stopped
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stopping" Id="{7432c237-396b-4548-b68d-b6955721e05f}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Stopping
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Suspended" Id="{fd0f4230-a78b-4ed1-8cf6-e8cd9c86044f}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Suspended
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Suspending" Id="{a57884f9-4a0c-466c-88b7-08ba1a5cbecc}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Suspending
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Undefined" Id="{c4144a95-7feb-4cd6-a703-d3f7d7af6ed2}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Undefined
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Unholding" Id="{9dd0a3d1-f78c-4255-882d-3fbc253e2566}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Unholding
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Unsuspending" Id="{7c02729b-973f-43dd-bc27-931fea9ae236}" FolderPath="Methods\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Unsuspending
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_PackTags" Id="{d4fd7f25-fac9-4d63-97d8-fd9490de3af8}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_PackTags : REFERENCE TO ST_PackMLv30Ext]]></Declaration>
+      <Get Name="Get" Id="{defbd6b3-564a-47bb-94ea-5385093654d3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_PackTags REF= stPackTags;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{79c99a0d-6a60-4afd-badd-09c0eaef16fd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[stPackTags := P_PackTags;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

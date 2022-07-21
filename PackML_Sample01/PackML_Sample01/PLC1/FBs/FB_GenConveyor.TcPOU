@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_GenConveyor" Id="{a0973bea-eca6-4ffb-a335-3d6df80aa911}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GenConveyor
+VAR_INPUT
+	bStart: BOOL;
+	bReset : BOOL;
+END_VAR
+VAR_OUTPUT
+	bActive : BOOL;
+	bAlarm : BOOL;
+	sAlarmMsg : STRING;
+END_VAR
+VAR
+	conveyor : BOOL;
+	alarm : BOOL;
+	alarmMsg : STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF bStart THEN
+	conveyor := TRUE;
+ELSE
+	conveyor := FALSE;
+END_IF
+
+bActive	:= conveyor;
+bAlarm	:= alarm;
+sAlarmMsg		:= alarmMsg;
+
+
+IF bReset THEN
+	conveyor	:= FALSE;
+	alarm		:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_GenRobot" Id="{49eecb81-1677-439b-b752-e0541160b4f7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GenRobot
+VAR_INPUT
+		bStart: BOOL;
+		bReset: BOOL;
+END_VAR
+VAR_OUTPUT
+		bActive: BOOL;
+		bAlarm: BOOL;
+		sAlarmMsg: STRING;		
+END_VAR
+VAR
+	robotstuff: BOOL;
+	alarm: BOOL;
+	alarmMsg: STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF bStart THEN
+	robotstuff := TRUE;
+ELSE
+	robotstuff := FALSE;
+END_IF
+
+bActive	:= robotstuff;
+bAlarm	:= alarm;
+sAlarmMsg		:= alarmMsg;
+
+
+IF bReset THEN
+	robotstuff	:= FALSE;
+	alarm		:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

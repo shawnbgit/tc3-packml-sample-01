@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_Delta_U01_SU02" Id="{1acd3e22-f75b-49ba-9ccd-3d9b71085dcb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Delta_U01_SU02 IMPLEMENTS I_UnitState
+
+VAR_INPUT
+	eUnitStateCommand	: E_PMLCommand := ePMLCommand_Abort;		// PML State Command from the Unit
+	eUnitModeStatus 	: DINT; 									// PML Mode Status from the Unit
+END_VAR
+
+VAR_OUTPUT
+	stSubUnitInfo 		: ST_PMLSubUnitInfo;						// PML SubUnit Info to the Unit
+	eState 				: E_PMLState;
+END_VAR
+
+VAR
+	fbPML_StateMachine	: PML_StateMachine;							// PML SubUnit State Machine
+	fbRobot				: FB_GenRobot;
+	bSubUnitActive 		: BOOL := TRUE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+fbPML_StateMachine();
+fbRobot();
+
+stSubUnitInfo.Active	:= bSubUnitActive;
+stSubUnitInfo.eState	:= fbPML_StateMachine.eState;
+eState					:= fbPML_StateMachine.eState;
+
+fbPML_StateMachine.eCommand := eUnitStateCommand;
+
+CASE fbPML_StateMachine.eState OF
+	ePMLState_Undefined:
+		M_Undefined();
+	ePMLState_Clearing:
+		M_Clearing();
+	ePMLState_Stopped:
+		M_Stopped();
+	ePMLState_Starting:
+		M_Starting();
+	ePMLState_Idle:
+		M_Idle();
+	ePMLState_Suspended:
+		M_Suspended();
+	ePMLState_Execute:
+		M_Execute();
+	ePMLState_Stopping:
+		M_Stopping();
+	ePMLState_Aborting:
+		M_Aborting();
+	ePMLState_Aborted:
+		M_Aborted();
+	ePMLState_Holding:
+		M_Holding();
+	ePMLState_Held:
+		M_Held();
+	ePMLState_Unholding:
+		M_Unholding();
+	ePMLState_Suspending:
+		M_Suspending();
+	ePMLState_Unsuspending:
+		M_Unsuspending();
+	ePMLState_Resetting:
+		M_Resetting();
+	ePMLState_Completing:
+		M_Completing();
+	ePMLState_Complete:
+		M_Complete();
+END_CASE]]></ST>
+    </Implementation>
+    <Folder Name="PML States" Id="{2f56a9be-9827-474a-954c-df9c4e09c9a8}" />
+    <Folder Name="SubUnit Code" Id="{3e3fbbf3-b81c-4845-b77f-301d6e6302f9}" />
+    <Action Name="A_RobotThing" Id="{4fa38fb1-ff95-4cff-bd43-bbc11b34ac15}" FolderPath="SubUnit Code\">
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="M_Aborted" Id="{efd7a981-7eb3-470f-a44c-d910d8a397f9}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Aborted
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state ABORTED :
+
+The unit/machine in this state has to maintain unit/machine status information.
+
+The unit/machine can only exit the ABORTED state after an explicit Clear command, subsequently 
+to manual intervention to correct and reset the detected safety circuit, for example an E-stop.
+
+*)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Aborting" Id="{4050c5b7-af3c-4235-bbff-dbff4e1727fb}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Aborting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state ABORTING :
+
+The ABORTING state can be entered at any time as a response to an Abort command. The aborting logic will
+bring the unit/machine to a rapid safe stop. The Aborting logic will provide the necessary actions to move
+the unit/machine into the ABORTED State.
+
+The actions to be taken when the unit/machine enters the Aborting state are to be defined by the Machine Supplier and End User.
+
+*)
+
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
+		M_StateComplete();
+	END_IF;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Clearing" Id="{1404558f-6d44-4e47-adad-b62f4a632178}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Clearing
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state CLEARING :
+
+Within the CLEARING state the operator clears the safety system and moves the unit/machine into the STOPPED state. 
+
+The unit/machine clears faults that may have occurred when Aborting and are presented in the ABORTED state before proceeding to a STOPPED state.
+
+The unit/machine will make available machine parameters to the external system. The machine parameters are availeble in order 
+to get information about eventual manual changes and corrections of data on the Unit.
+
+The actions to be taken when the unit/machine enters the CLEARING state are to be defined by Machine Supplier and End User.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		M_StateComplete();
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Complete" Id="{1a87cfff-ad86-44d3-8880-957b93e458c5}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Complete
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state COMPLETE :
+
+The unit/machine has finished the COMPLETING state and is now waiting for a Reset command
+before transitioning to the Resetting state. The unit/machine is powered and all data is still
+represented within the unit. The unit/machine is ready to be reset.
+
+*)
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Completing" Id="{e945c225-f602-4f30-b120-46847655e053}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Completing
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state COMPLETING :
+
+This state provides the steps needed to complete the job usually as a result of product counter reaching a limit in the unit.
+
+The unit/machine will make available machine parameters back to the external system. The machine parameters can be obtained 
+by the external system to get information about manual changed or corrected data on the unit/machine during executing.
+The Machine Supplier and End User have to specify the special conditions that have to take place when the unit/machine enters
+the COMPLETING and COMPLETE state. For example, does the unit/machine empty its internal product buffers, or does the unit/machine stop
+immediately with products within the unit.
+
+Actions to be taken during COMPLETING are to be specified by the Machine Supplier and End User.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
+		M_StateComplete();
+	END_IF;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Execute" Id="{0bf9d518-eb07-4501-ae60-76f26e0e0921}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state EXECUTE :
+
+The unit/machine is running with all conditions met, defined by the selected MODE and / or recipe selected.
+
+*)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Held" Id="{32a3d0de-910d-4b2d-b171-8d03c4cdc679}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Held
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state HELD :
+
+The HELD state holds the Unit’s operation while material blockages are cleared or enables
+the safe correction of an equipment fault before the production may be resumed.
+
+To be able to restart production correctly after the HELD state, all relevant process set-points
+and return status of the procedures at the time of receiving the Hold Command must be saved in the
+unit/machine controller when executing the Holding procedure.
+
+*)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Holding" Id="{29b6e4c4-905b-44ef-8d33-52e0b4e342ef}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Holding
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state HOLDING :
+
+The HOLDING logic brings the unit/machine to a stop or to a state which represents HELD for the particular Unit.
+This is an internal control logic that is executed when an error15 occurs on the unit/machine or an operator 
+initiates a Hold command from unit/machine HMI. The Holding control logics change the unit/machine from the Holding state to the HELD state.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
+		M_StateComplete();
+	END_IF;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Idle" Id="{ae5fa7fd-42e6-4e5a-95de-9efdea5e7d32}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Idle
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state IDLE :
+
+This is a state which indicates that Resetting is complete. The unit/machine is ready for new production
+and machine parameters can be received. If an error occurs on the unit, the unit/machine will enter the
+STOPPING state and end in STOPPED state.
+
+In the IDLE state the unit/machine is approved for safety issues and ready for production. The unit/machine
+can allow, in the IDLE state, a remote Start command from external system. It is to end User responsibility
+to ensure that company safety is followed for external Start commands.
+
+*)
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Resetting" Id="{8d46eb22-49a7-4aa2-9f15-dfa301b4358e}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Resetting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state RESETTING :
+
+The PackML interface RESETTING state will start the resetting process, which typically causes the unit/machine to clear data 
+and to place the unit/machine in an IDLE state, where unit/machine components are energized waiting for a Start command. 
+
+By resetting the Unit, the machine parameters will be cleared and the unit/machine is ready for new machine parameters. 
+
+For example, the operator has changed tooling and by activating the Resetting process the operator have indicated that the machine is ready for production.
+
+Actions to be taken during RESETTING are to be specified by the Machine Supplier and End User.
+
+*)
+
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart	:= FALSE;
+		M_StateComplete();
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Starting" Id="{66e794bb-69e5-45cf-8271-db87cda1457f}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Starting
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state STARTING :
+
+This state provides the steps needed to be able to start the unit/machine and is triggered by a Start command. 
+
+The starting logic will check the unit/machine parameters and move the unit/machine into the state EXECUTE if parameters has been accepted. 
+The starting logic will ramp up speed, pressure, etc. to be ready for production. 
+
+However, if the parameters are not valid, the starting logic will move the unit/machine into the STOPPING state and the unit/machine will end in STOPPED state.
+If the machine is not able to complete the Starting state process (internal error), the unit/machine will enter the STOPPING state and end in STOPPED state.
+Actions to be taken during STARTING are to be specified by the Machine Supplier and End User.
+
+*)
+
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := TRUE;
+	IF fbRobot.bActive THEN
+		M_StateComplete();
+	END_IF;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_StateComplete" Id="{1da1be8d-aa8a-484f-8d72-20a2cd2be6f8}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_StateComplete
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbPML_StateMachine.M_StateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stopped" Id="{8e1607af-7bf3-496d-b5d9-0b1c664d13d3}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Stopped
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state STOPPED :
+
+The unit/machine is powered and stationary after completing the STOPPING state. All communication with other
+systems is functioning. The unit/machine is powered and all parameters is still represented within the unit. 
+
+The unit/machine is ready to be reset.
+
+Normal Starting of the unit/machine cannot be initiated unless Resetting had taken place.
+
+*)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stopping" Id="{2705fca7-e9e9-403f-98ac-485ea92c01b0}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Stopping
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state STOPPING :
+
+This state executes control logic which brings the unit/machine to a controlled stop as reflected by the STOPPED state.
+
+The unit/machine can make available machine parameters back via the External interface. The machine parameters can be 
+used to get information about manual changes and corrections on the unit/machine during executing.
+
+The Machine Supplier and End User must specify the special conditions that have to take place, when the units enters the STOPPING and STOPPED state. 
+
+For example, does the unit/machine empty its internal product buffers, or does the unit/machine stop immediately.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
+		M_StateComplete();
+	END_IF;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Suspended" Id="{4ce456fd-9e16-4d6c-85af-a8da043bfa63}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Suspended
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* PackML OMAC Implementation Guide Description for the state SUSPENDED :
+
+The SUSPENDED state can be reached as a result of external process conditions.
+
+In the SUSPENDED state the unit/machine is waiting for external process conditions
+to return to normal and then transition to UNSUSPENDING State and then the normal EXECUTE state.
+
+*)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Suspending" Id="{dac0ae96-5032-4f42-9942-977d94dade1a}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Suspending
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state SUSPENDING :
+
+This SUSPENDING state is required prior to the SUSPENDED wait state, and prepares the unit/machine for e.g. stop ironing, stop cutting, stop debagging, etc.
+The unit/machine may be running at a relevant set point speed, but there is no product being send to the next unit/machine downstream.
+
+The Machine Supplier and End User must specify the special conditions that have to take place when the units enter the Suspending and SUSPENDED state. 
+Does the unit/machine fill up its internal product buffers or does the unit/machine stop immediately. The actions to be taken when the unit/machine 
+enters the Suspending state are to be defined. Suspending is the result of starvation of material within the in-feeds or a result of saturation related 
+out-feed blockage that prevents the unit/machine from Executing continued steady production. During the controlled sequence of Suspending 
+the unit/machine will transition to a SUSPENDED state.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
+		M_StateComplete();
+	END_IF;
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Undefined" Id="{8f802fce-5500-4c11-90aa-71f0e675744f}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Undefined
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Unholding" Id="{c8de0b78-2e8d-4e7f-b887-5680eb0309f4}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Unholding
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state UNHOLDING :
+
+The UNHOLDING state is a response to an Operator command to resume production. The control logics
+in the UNHOLDING state prepares the unit/machine to re-enter the normal EXECUTE state. The UNHOLDING logic 
+will ramp up speed, pressure, etc. to be ready for production.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		M_StateComplete();
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Unsuspending" Id="{8ba90f6a-2f8c-46e4-8867-db4164a8deaf}" FolderPath="PML States\">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD M_Unsuspending
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(* PackML OMAC Implementation Guide Description for the state UNSUSPENDING :
+
+This state is a result of a unit/machine generated request from SUSPENDED state to go 
+back to the EXECUTE state or an Unsuspend command via the external interface.
+
+This state is done prior to the EXECUTE state, and prepares the unit/machine for the EXECUTE state.
+The actions of this state may include ramping up speeds, turning on vacuums, and the re-engagement of clutches. 
+The unit/machine is not allowed to change state to EXECUTE unless that the external command has been set equal toUnsuspend.
+The actions to be taken when the unit/machine enters the UNSUSPENDING state are to be defined by the Machine Supplier and End User.
+
+*)
+
+CASE eUnitModeStatus OF
+	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
+		M_StateComplete();
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
