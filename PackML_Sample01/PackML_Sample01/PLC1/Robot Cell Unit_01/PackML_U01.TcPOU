@@ -1111,10 +1111,10 @@ END_VAR
       <Implementation>
         <ST><![CDATA[
 
-// Commands to Unit 01 from the Line Controller
+// Commands to Unit 01 from the Production Line
 fbRobotCell.P_PackTags.Command := GVL.UnitPackTags[1].Command;
 
-// Status & Admin Data of Unit 01 to the Line Controller
+// Status & Admin Data of Unit 01 to the Production Line
 GVL.UnitPackTags[1].Status	:= fbRobotCell.P_PackTags.Status;
 GVL.UnitPackTags[1].Admin	:= fbRobotCell.P_PackTags.Admin;]]></ST>
       </Implementation>

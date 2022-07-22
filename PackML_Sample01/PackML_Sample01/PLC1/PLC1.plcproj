@@ -69,7 +69,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="FBs" />
     <Folder Include="Robot Cell Unit_03" />
@@ -81,7 +80,6 @@
     <Folder Include="Robot Cell Unit_02\SubUnits" />
     <Folder Include="Robot Cell Unit_03\SubUnits" />
     <Folder Include="VISUs" />
-    <Folder Include="POUs" />
     <Folder Include="VISUs\Text Lists" />
   </ItemGroup>
   <ItemGroup>
