@@ -5,7 +5,10 @@
     <CycleTime>10000</CycleTime>
     <Priority>20</Priority>
     <PouCall>
-      <Name>PackML_U01</Name>
+      <Name>PackML_01</Name>
+    </PouCall>
+    <PouCall>
+      <Name>PackML_02</Name>
     </PouCall>
     <TaskFBGuid>{c9bbf990-c801-4cb8-9903-db0cac056142}</TaskFBGuid>
     <Fb_init>{6873cf37-e78c-4cc0-9e3b-e1ec7ad81a10}</Fb_init>

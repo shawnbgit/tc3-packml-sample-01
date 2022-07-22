@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="FB_Delta_U01_SU02" Id="{1acd3e22-f75b-49ba-9ccd-3d9b71085dcb}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Delta_U01_SU02 IMPLEMENTS I_UnitState
+  <POU Name="FB_Delta_01_02" Id="{1acd3e22-f75b-49ba-9ccd-3d9b71085dcb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Delta_01_02 IMPLEMENTS I_UnitState
 
 VAR_INPUT
 	eUnitStateCommand	: E_PMLCommand := ePMLCommand_Abort;		// PML State Command from the Unit

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="FB_Infeed_U01_SU01" Id="{d12ab91b-b835-400e-8667-9a6b22eeb443}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Infeed_U01_SU01 IMPLEMENTS I_UnitState
+  <POU Name="FB_Infeed_01_01" Id="{d12ab91b-b835-400e-8667-9a6b22eeb443}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Infeed_01_01 IMPLEMENTS I_UnitState
 
 VAR_INPUT
 	eUnitStateCommand	: E_PMLCommand := ePMLCommand_Abort;		// PML State Command from the Unit

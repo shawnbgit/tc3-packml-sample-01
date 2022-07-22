@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="FB_Robot_U01" Id="{f81d340e-7374-46bf-8c87-6674d95ca016}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Robot_U01 EXTENDS FB_PMLUnit IMPLEMENTS I_UnitState
+  <POU Name="FB_Cell_02" Id="{c78a8a1b-72c4-4e2b-97da-73ec322d436f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Cell_02 EXTENDS FB_PMLUnit IMPLEMENTS I_UnitState
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -14,16 +14,16 @@ END_VAR
 
 A_Alarms();]]></ST>
     </Implementation>
-    <Folder Name="PML States" Id="{06962f23-4d6b-418d-bb82-d0c3ed8aad1f}" />
-    <Folder Name="Unit Code" Id="{6389f8c2-4269-40e8-be81-d3a3c96e0ed3}" />
-    <Action Name="A_Alarms" Id="{f36bf467-742c-4eba-8e0d-06ed3b66da67}" FolderPath="Unit Code\">
+    <Folder Name="PML States" Id="{0285f8cc-7f0c-46fa-8f34-a040aed8a29b}" />
+    <Folder Name="Unit Code" Id="{07caacf8-1fd3-4ed0-b044-32bfc3331b55}" />
+    <Action Name="A_Alarms" Id="{349ac69e-70d1-4f5d-9580-2ffcd9e396a7}" FolderPath="Unit Code\">
       <Implementation>
         <ST><![CDATA[
 
 // probably use the event logger]]></ST>
       </Implementation>
     </Action>
-    <Method Name="M_Aborted" Id="{c2e17ba0-3f79-494a-a672-724788bc56d5}" FolderPath="PML States\">
+    <Method Name="M_Aborted" Id="{216cfd10-5269-4788-a5c0-3901cecac549}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Aborted
 ]]></Declaration>
@@ -31,7 +31,7 @@ METHOD M_Aborted
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Aborting" Id="{5bbd67de-1611-4f4a-8d81-54fb23660d8b}" FolderPath="PML States\">
+    <Method Name="M_Aborting" Id="{8d3d780e-e47d-4722-a334-8a9715a90c6e}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Aborting
 
@@ -40,7 +40,7 @@ METHOD M_Aborting
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Clearing" Id="{524efffa-efc7-40df-bc66-0c496f3a1ad0}" FolderPath="PML States\">
+    <Method Name="M_Clearing" Id="{0c3efa14-5798-4922-bb96-c39409d8ba8a}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Clearing
 ]]></Declaration>
@@ -48,7 +48,7 @@ METHOD M_Clearing
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Complete" Id="{24efea04-723f-4dd4-95be-df21a60c7783}" FolderPath="PML States\">
+    <Method Name="M_Complete" Id="{a67a6c9a-4209-40da-b08f-a73fb310234d}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Complete
 ]]></Declaration>
@@ -56,7 +56,7 @@ METHOD M_Complete
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Completing" Id="{d20faca9-c23e-4395-93ce-606afa71292a}" FolderPath="PML States\">
+    <Method Name="M_Completing" Id="{5981bd91-e313-4fb3-9951-f6114e2097a1}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Completing
 ]]></Declaration>
@@ -64,7 +64,7 @@ METHOD M_Completing
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Execute" Id="{51af48d1-812c-4442-9b99-ca8cf3cba270}" FolderPath="PML States\">
+    <Method Name="M_Execute" Id="{16a579bc-2100-4d79-b1a1-2b80ae76b67d}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Execute
 ]]></Declaration>
@@ -72,7 +72,7 @@ METHOD M_Execute
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Held" Id="{e9c2e2a1-5f29-4541-b164-b911b335fd5a}" FolderPath="PML States\">
+    <Method Name="M_Held" Id="{56339e1b-7be3-45aa-8030-d69cc1b89997}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Held
 ]]></Declaration>
@@ -80,7 +80,7 @@ METHOD M_Held
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Holding" Id="{5f63ccc2-86ec-4573-b09d-93c23658e4b4}" FolderPath="PML States\">
+    <Method Name="M_Holding" Id="{0d25192b-30e9-4d3c-b20e-bc8c65988aff}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Holding
 ]]></Declaration>
@@ -88,7 +88,7 @@ METHOD M_Holding
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Idle" Id="{656b4abc-8219-4a09-bf4a-83f6aa99c008}" FolderPath="PML States\">
+    <Method Name="M_Idle" Id="{f17667da-e220-428c-bba2-339c69ed5b06}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Idle
 ]]></Declaration>
@@ -96,7 +96,7 @@ METHOD M_Idle
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Resetting" Id="{c4da6461-ac93-4e1e-91ef-38c8cc8ac304}" FolderPath="PML States\">
+    <Method Name="M_Resetting" Id="{5ec1cd00-be3f-4e19-99ae-e4eec2d454fc}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Resetting
 ]]></Declaration>
@@ -104,7 +104,7 @@ METHOD M_Resetting
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Starting" Id="{8b2da4bf-31f8-48a3-b0fc-14e794fc2b8c}" FolderPath="PML States\">
+    <Method Name="M_Starting" Id="{627cf1d1-83d1-480b-b7aa-9d3cae17a409}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Starting
 ]]></Declaration>
@@ -112,7 +112,7 @@ METHOD M_Starting
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_StateComplete" Id="{f0298424-68c1-464e-b4a1-7f6a3075e434}" FolderPath="PML States\">
+    <Method Name="M_StateComplete" Id="{f4e2521a-f795-4ed3-a7c0-c5e7094cf14d}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_StateComplete
 ]]></Declaration>
@@ -120,7 +120,7 @@ METHOD M_StateComplete
         <ST><![CDATA[fbPML_StateMachine.M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Stopped" Id="{aaed99c7-082f-4121-9a5f-e5843664b3cb}" FolderPath="PML States\">
+    <Method Name="M_Stopped" Id="{e0abc6ad-087e-4e5c-a19c-9f93e6457f3f}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Stopped
 ]]></Declaration>
@@ -128,7 +128,7 @@ METHOD M_Stopped
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Stopping" Id="{2b94f682-ff63-4d8b-a7c6-22a290fcd134}" FolderPath="PML States\">
+    <Method Name="M_Stopping" Id="{049e68b4-5d73-46b7-940f-d50b9c12386a}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Stopping
 ]]></Declaration>
@@ -136,7 +136,7 @@ METHOD M_Stopping
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Suspended" Id="{0b88f180-1bff-496a-af9c-2a38c2ee9403}" FolderPath="PML States\">
+    <Method Name="M_Suspended" Id="{8e0e48cb-9530-4c4e-b17b-0a7e49f79805}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Suspended
 ]]></Declaration>
@@ -144,7 +144,7 @@ METHOD M_Suspended
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Suspending" Id="{87355f19-095a-42b8-9a25-c093ee93fae3}" FolderPath="PML States\">
+    <Method Name="M_Suspending" Id="{d549e89b-dd02-4ef4-b89f-13f4caaa1bcb}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Suspending
 ]]></Declaration>
@@ -152,7 +152,7 @@ METHOD M_Suspending
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Undefined" Id="{2943cac7-d462-4df5-a894-c5fdc1b61114}" FolderPath="PML States\">
+    <Method Name="M_Undefined" Id="{ccb4a0fb-fb58-4c8d-b3b5-6e82f363a053}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Undefined
 ]]></Declaration>
@@ -160,7 +160,7 @@ METHOD M_Undefined
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Unholding" Id="{5ea4b7e1-59f6-4afc-9188-940cfeb80b88}" FolderPath="PML States\">
+    <Method Name="M_Unholding" Id="{cc472f08-a064-4d20-ba75-efd5ca300fb6}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Unholding
 ]]></Declaration>
@@ -168,7 +168,7 @@ METHOD M_Unholding
         <ST><![CDATA[M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Unsuspending" Id="{64f252e1-2c60-4172-8c46-850e4b06c07c}" FolderPath="PML States\">
+    <Method Name="M_Unsuspending" Id="{96b04a55-55b9-49ef-bf1f-b022f0ba64d8}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Unsuspending
 ]]></Declaration>

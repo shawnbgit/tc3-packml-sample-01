@@ -168,7 +168,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"GVL.UnitPackTags[1].Command.CntrlCmd"</v>
+                      <v n="Value">"GVL.UnitPackTags[2].Command.CntrlCmd"</v>
                     </o>
                     <o>
                       <v n="Id">2114174855L</v>
@@ -198,7 +198,7 @@
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
                           <v n="Id">1186196937L</v>
-                          <v n="Value">"GVL.UnitPackTags[1].Command.UnitModeChangeRequest"</v>
+                          <v n="Value">"GVL.UnitPackTags[2].Command.UnitModeChangeRequest"</v>
                         </o>
                       </l>
                     </o>
@@ -532,7 +532,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"GVL.UnitPackTags[1].Command.UnitMode"</v>
+                      <v n="Value">"GVL.UnitPackTags[2].Command.UnitMode"</v>
                     </o>
                     <o>
                       <v n="Id">2114174855L</v>
@@ -562,7 +562,7 @@
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
                           <v n="Id">1186196937L</v>
-                          <v n="Value">"GVL.UnitPackTags[1].Command.CmdChangeRequest"</v>
+                          <v n="Value">"GVL.UnitPackTags[2].Command.CmdChangeRequest"</v>
                         </o>
                       </l>
                     </o>
@@ -882,7 +882,7 @@
                         </o>
                         <o>
                           <v n="Id">3774423699L</v>
-                          <v n="Value">"PackML_U01.fbRobotCell.eState"</v>
+                          <v n="Value">"PackML_01.fbRobotCell.eState"</v>
                         </o>
                       </l>
                     </o>
@@ -1333,7 +1333,7 @@
                     </o>
                     <o>
                       <v n="Id">3774423699L</v>
-                      <v n="Value">"PackML_U01.fbInfeed.eState"</v>
+                      <v n="Value">"PackML_01.fbInfeed.eState"</v>
                     </o>
                   </l>
                 </o>
@@ -1623,7 +1623,7 @@
                     </o>
                     <o>
                       <v n="Id">3774423699L</v>
-                      <v n="Value">"PackML_U01.fbDelta.eState"</v>
+                      <v n="Value">"PackML_01.fbDelta.eState"</v>
                     </o>
                   </l>
                 </o>
@@ -1913,7 +1913,7 @@
                     </o>
                     <o>
                       <v n="Id">3774423699L</v>
-                      <v n="Value">"PackML_U01.fbDischarge.eState"</v>
+                      <v n="Value">"PackML_01.fbDischarge.eState"</v>
                     </o>
                   </l>
                 </o>
@@ -2166,10 +2166,10 @@
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>5b912cbe-e333-4944-a665-093a783c6978</v>
-                <v>FB_Reinit</v>
-                <v>33fde213-5eb2-41df-8936-28aa46baefad</v>
                 <v>FB_Exit</v>
                 <v>3eb28f4a-3bdf-4e14-af33-399bfd29fb6b</v>
+                <v>FB_Reinit</v>
+                <v>33fde213-5eb2-41df-8936-28aa46baefad</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{4837a58d-a7da-4e6b-b673-33974e136e46}</v>
