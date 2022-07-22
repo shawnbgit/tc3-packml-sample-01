@@ -33,6 +33,9 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="Production Line Unit_00\PL Code\Production_00.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Robot Cell Unit_01\FB_Cell_01.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -88,7 +91,7 @@
     <Folder Include="FBs" />
     <Folder Include="Robot Cell Unit_03" />
     <Folder Include="Production Line Unit_00" />
-    <Folder Include="Production Line Unit_00\NewFolder1" />
+    <Folder Include="Production Line Unit_00\PL Code" />
     <Folder Include="Robot Cell Unit_02" />
     <Folder Include="Robot Cell Unit_01" />
     <Folder Include="Robot Cell Unit_01\SubUnits" />

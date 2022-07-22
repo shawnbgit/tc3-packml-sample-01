@@ -10,6 +10,9 @@
     <PouCall>
       <Name>PackML_02</Name>
     </PouCall>
+    <PouCall>
+      <Name>Production_00</Name>
+    </PouCall>
     <TaskFBGuid>{c9bbf990-c801-4cb8-9903-db0cac056142}</TaskFBGuid>
     <Fb_init>{6873cf37-e78c-4cc0-9e3b-e1ec7ad81a10}</Fb_init>
     <Fb_exit>{c89b945a-03fb-4f4c-9f0c-05cc5073ccda}</Fb_exit>

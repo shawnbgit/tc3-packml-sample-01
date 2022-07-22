@@ -17,6 +17,7 @@ VAR
 	fbPML_StateMachine	: PML_StateMachine;							// PML SubUnit State Machine
 	fbConveyor			: FB_GenConveyor;
 	bSubUnitActive 		: BOOL := TRUE;
+	btestStop			: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
@@ -359,7 +360,7 @@ For example, does the unit/machine empty its internal product buffers, or does t
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
 		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+	IF btestStop THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
