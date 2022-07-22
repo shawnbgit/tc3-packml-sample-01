@@ -8,6 +8,7 @@ VAR
 	fbDelta				: FB_Delta_U01_SU02;
 	fbDischarge			: FB_Discharge_U01_SU03;
 	stPMLSubUnitInfo	: ARRAY [1..4] OF ST_PMLSubUnitInfo;	//Informations about the Subunits
+	iUnitState 			: ARRAY [1..4] OF I_UnitState := [fbRobotCell, fbInfeed, fbDelta, fbDischarge];
 END_VAR
 ]]></Declaration>
     <Implementation>
