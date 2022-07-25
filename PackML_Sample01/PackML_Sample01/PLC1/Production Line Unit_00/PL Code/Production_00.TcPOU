@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Production_00" Id="{5dc5c6b7-6f8e-4f7c-94a8-20d2f19a34d3}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Production_00
+VAR
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+GVL.UnitPackTags[1] := GVL.UnitPackTags[2] := GVL.LineCommands;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

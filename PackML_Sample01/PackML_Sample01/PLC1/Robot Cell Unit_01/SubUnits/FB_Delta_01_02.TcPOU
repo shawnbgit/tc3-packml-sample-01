@@ -1,82 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="FB_Infeed_U01_SU01" Id="{d12ab91b-b835-400e-8667-9a6b22eeb443}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Infeed_U01_SU01 IMPLEMENTS I_UnitState
+  <POU Name="FB_Delta_01_02" Id="{1acd3e22-f75b-49ba-9ccd-3d9b71085dcb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Delta_01_02 EXTENDS FB_PMLSub IMPLEMENTS I_UnitState
 
 VAR_INPUT
-	eUnitStateCommand	: E_PMLCommand := ePMLCommand_Abort;		// PML State Command from the Unit
-	eUnitModeStatus 	: DINT; 									// PML Mode Status from the Unit
 END_VAR
 
 VAR_OUTPUT
-	stSubUnitInfo 		: ST_PMLSubUnitInfo;						// PML SubUnit Info to the Unit
-	eState 				: E_PMLState;
 END_VAR
 
 VAR
-	fbPML_StateMachine	: PML_StateMachine;							// PML SubUnit State Machine
-	fbConveyor			: FB_GenConveyor;
-	bSubUnitActive 		: BOOL := TRUE;
+	fbRobot				: FB_GenRobot;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-fbPML_StateMachine();
-fbConveyor();
-
-stSubUnitInfo.Active	:= bSubUnitActive;
-stSubUnitInfo.eState	:= fbPML_StateMachine.eState;
-eState					:= fbPML_StateMachine.eState;
-
-fbPML_StateMachine.eCommand := eUnitStateCommand;
-
-CASE fbPML_StateMachine.eState OF
-	ePMLState_Undefined:
-		M_Undefined();
-	ePMLState_Clearing:
-		M_Clearing();
-	ePMLState_Stopped:
-		M_Stopped();
-	ePMLState_Starting:
-		M_Starting();
-	ePMLState_Idle:
-		M_Idle();
-	ePMLState_Suspended:
-		M_Suspended();
-	ePMLState_Execute:
-		M_Execute();
-	ePMLState_Stopping:
-		M_Stopping();
-	ePMLState_Aborting:
-		M_Aborting();
-	ePMLState_Aborted:
-		M_Aborted();
-	ePMLState_Holding:
-		M_Holding();
-	ePMLState_Held:
-		M_Held();
-	ePMLState_Unholding:
-		M_Unholding();
-	ePMLState_Suspending:
-		M_Suspending();
-	ePMLState_Unsuspending:
-		M_Unsuspending();
-	ePMLState_Resetting:
-		M_Resetting();
-	ePMLState_Completing:
-		M_Completing();
-	ePMLState_Complete:
-		M_Complete();
-END_CASE]]></ST>
+SUPER^();	// a call to the parent class FB_PMLSub
+fbRobot();	// a call to the specific logic for the Sub Unit
+]]></ST>
     </Implementation>
-    <Folder Name="PML States" Id="{b5f4d40e-9e52-435b-9f8b-e92fc71c02f1}" />
-    <Folder Name="SubUnit Code" Id="{c2b68d30-fb91-41bf-943f-e9db2ca34d83}" />
-    <Action Name="A_ConveyorThing" Id="{89cb7cb8-c08e-497e-a0b0-2c17641b1fd0}" FolderPath="SubUnit Code\">
+    <Folder Name="PML States" Id="{2f56a9be-9827-474a-954c-df9c4e09c9a8}" />
+    <Folder Name="SubUnit Code" Id="{3e3fbbf3-b81c-4845-b77f-301d6e6302f9}" />
+    <Action Name="A_RobotThing" Id="{4fa38fb1-ff95-4cff-bd43-bbc11b34ac15}" FolderPath="SubUnit Code\">
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Action>
-    <Method Name="M_Aborted" Id="{08bacc81-9bdb-4689-bc79-9af4f61a2f8b}" FolderPath="PML States\">
+    <Method Name="M_Aborted" Id="{efd7a981-7eb3-470f-a44c-d910d8a397f9}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Aborted
 ]]></Declaration>
@@ -91,7 +40,7 @@ to manual intervention to correct and reset the detected safety circuit, for exa
 *)]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Aborting" Id="{a1deacdb-47ed-48f5-857a-6dd1176cc5fa}" FolderPath="PML States\">
+    <Method Name="M_Aborting" Id="{4050c5b7-af3c-4235-bbff-dbff4e1727fb}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Aborting
 ]]></Declaration>
@@ -109,14 +58,14 @@ The actions to be taken when the unit/machine enters the Aborting state are to b
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Clearing" Id="{673f24c3-4624-41f9-965d-c138d26496a3}" FolderPath="PML States\">
+    <Method Name="M_Clearing" Id="{1404558f-6d44-4e47-adad-b62f4a632178}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Clearing
 ]]></Declaration>
@@ -141,7 +90,7 @@ CASE eUnitModeStatus OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Complete" Id="{0b9b11d2-5152-49b4-8b3e-e8f075125e14}" FolderPath="PML States\">
+    <Method Name="M_Complete" Id="{1a87cfff-ad86-44d3-8880-957b93e458c5}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Complete
 ]]></Declaration>
@@ -156,7 +105,7 @@ represented within the unit. The unit/machine is ready to be reset.
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Completing" Id="{0c3c92f0-e465-4900-b453-7f27d74708dd}" FolderPath="PML States\">
+    <Method Name="M_Completing" Id="{e945c225-f602-4f30-b120-46847655e053}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Completing
 ]]></Declaration>
@@ -178,14 +127,14 @@ Actions to be taken during COMPLETING are to be specified by the Machine Supplie
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Execute" Id="{c7af899e-ae4e-4d09-b43f-1d6dd0b79039}" FolderPath="PML States\">
+    <Method Name="M_Execute" Id="{0bf9d518-eb07-4501-ae60-76f26e0e0921}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Execute
 ]]></Declaration>
@@ -197,7 +146,7 @@ The unit/machine is running with all conditions met, defined by the selected MOD
 *)]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Held" Id="{da23b9d7-a638-41a4-8298-0b48d6c9fa81}" FolderPath="PML States\">
+    <Method Name="M_Held" Id="{32a3d0de-910d-4b2d-b171-8d03c4cdc679}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Held
 ]]></Declaration>
@@ -214,7 +163,7 @@ unit/machine controller when executing the Holding procedure.
 *)]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Holding" Id="{6efc2f34-ce54-4c22-9c21-b6ed25cd4945}" FolderPath="PML States\">
+    <Method Name="M_Holding" Id="{29b6e4c4-905b-44ef-8d33-52e0b4e342ef}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Holding
 ]]></Declaration>
@@ -230,14 +179,14 @@ initiates a Hold command from unit/machine HMI. The Holding control logics chang
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Idle" Id="{b36cbff9-0fdc-4e0c-a119-d0027aa7aca5}" FolderPath="PML States\">
+    <Method Name="M_Idle" Id="{ae5fa7fd-42e6-4e5a-95de-9efdea5e7d32}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Idle
 ]]></Declaration>
@@ -256,7 +205,7 @@ to ensure that company safety is followed for external Start commands.
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Resetting" Id="{95b5adfb-d1d9-4764-8415-ace749d5827c}" FolderPath="PML States\">
+    <Method Name="M_Resetting" Id="{8d46eb22-49a7-4aa2-9f15-dfa301b4358e}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Resetting
 ]]></Declaration>
@@ -278,12 +227,12 @@ Actions to be taken during RESETTING are to be specified by the Machine Supplier
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart	:= FALSE;
+		fbRobot.bStart	:= FALSE;
 		M_StateComplete();
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Starting" Id="{7eba74ba-4885-4ebc-b12d-77dee86e1baa}" FolderPath="PML States\">
+    <Method Name="M_Starting" Id="{66e794bb-69e5-45cf-8271-db87cda1457f}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Starting
 ]]></Declaration>
@@ -305,14 +254,14 @@ Actions to be taken during STARTING are to be specified by the Machine Supplier 
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := TRUE;
-	IF fbConveyor.bActive THEN
+		fbRobot.bStart := TRUE;
+	IF fbRobot.bActive THEN
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_StateComplete" Id="{d7060e38-82fe-41f6-8dca-4838fd114636}" FolderPath="PML States\">
+    <Method Name="M_StateComplete" Id="{1da1be8d-aa8a-484f-8d72-20a2cd2be6f8}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_StateComplete
 ]]></Declaration>
@@ -320,7 +269,7 @@ METHOD M_StateComplete
         <ST><![CDATA[fbPML_StateMachine.M_StateComplete();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Stopped" Id="{9af687e4-f301-46f4-9750-305a14b28cde}" FolderPath="PML States\">
+    <Method Name="M_Stopped" Id="{8e1607af-7bf3-496d-b5d9-0b1c664d13d3}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Stopped
 ]]></Declaration>
@@ -337,7 +286,7 @@ Normal Starting of the unit/machine cannot be initiated unless Resetting had tak
 *)]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Stopping" Id="{43bd7e7c-a7f5-4fda-80dc-7d6f50c7ec25}" FolderPath="PML States\">
+    <Method Name="M_Stopping" Id="{2705fca7-e9e9-403f-98ac-485ea92c01b0}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Stopping
 ]]></Declaration>
@@ -358,14 +307,14 @@ For example, does the unit/machine empty its internal product buffers, or does t
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Suspended" Id="{90ce892f-77a5-4df7-b767-d29a1b9fec8a}" FolderPath="PML States\">
+    <Method Name="M_Suspended" Id="{4ce456fd-9e16-4d6c-85af-a8da043bfa63}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Suspended
 ]]></Declaration>
@@ -380,7 +329,7 @@ to return to normal and then transition to UNSUSPENDING State and then the norma
 *)]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Suspending" Id="{a682699e-fa6a-4f71-8d43-326426f3e269}" FolderPath="PML States\">
+    <Method Name="M_Suspending" Id="{dac0ae96-5032-4f42-9942-977d94dade1a}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Suspending
 ]]></Declaration>
@@ -401,15 +350,15 @@ the unit/machine will transition to a SUSPENDED state.
 
 CASE eUnitModeStatus OF
 	ePMLProtUnitMode_Production, ePMLProtUnitMode_Maintenance, ePMLProtUnitMode_Manual :
-		fbConveyor.bStart := FALSE;
-	IF fbConveyor.bActive=FALSE THEN	
+		fbRobot.bStart := FALSE;
+	IF fbRobot.bActive=FALSE THEN	
 		M_StateComplete();
 	END_IF;
 END_CASE
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Undefined" Id="{33ce9c83-f134-4299-b9da-29ae7b4ac73e}" FolderPath="PML States\">
+    <Method Name="M_Undefined" Id="{8f802fce-5500-4c11-90aa-71f0e675744f}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Undefined
 ]]></Declaration>
@@ -417,7 +366,7 @@ METHOD M_Undefined
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Unholding" Id="{b65fb2f7-8e1a-447b-a0be-048486161367}" FolderPath="PML States\">
+    <Method Name="M_Unholding" Id="{c8de0b78-2e8d-4e7f-b887-5680eb0309f4}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Unholding
 ]]></Declaration>
@@ -437,7 +386,7 @@ CASE eUnitModeStatus OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_Unsuspending" Id="{dcdc60f8-4379-443e-957e-da8059abed5c}" FolderPath="PML States\">
+    <Method Name="M_Unsuspending" Id="{8ba90f6a-2f8c-46e4-8867-db4164a8deaf}" FolderPath="PML States\">
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD M_Unsuspending
 ]]></Declaration>

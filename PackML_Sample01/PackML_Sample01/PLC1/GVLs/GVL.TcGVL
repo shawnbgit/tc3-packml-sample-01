@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	UnitPackTags : ARRAY [1..5] OF ST_PackMLv30Ext ;
+	LineCommands : ST_PackMLv30Ext;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

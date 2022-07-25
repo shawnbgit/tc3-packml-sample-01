@@ -46,8 +46,23 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"965"</v>
+              <v n="TextDefault">"Unit 01 PML Mode"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"845"</v>
               <v n="TextDefault">"Unit 01 PML State"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"22"</v>
+              <v n="TextDefault">"Unit 02 PML Mode"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"859"</v>
+              <v n="TextDefault">"Unit 02 PML State"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
           </l>
