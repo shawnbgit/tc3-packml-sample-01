@@ -1,73 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_Infeed_02_01" Id="{39470fb3-b081-479b-870e-af4d16b4caf3}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Infeed_02_01 IMPLEMENTS I_UnitState
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Infeed_02_01 EXTENDS FB_PMLSub IMPLEMENTS I_UnitState
 
 VAR_INPUT
-	eUnitStateCommand	: E_PMLCommand := ePMLCommand_Abort;		// PML State Command from the Unit
-	eUnitModeStatus 	: DINT; 									// PML Mode Status from the Unit
 END_VAR
 
 VAR_OUTPUT
-	stSubUnitInfo 		: ST_PMLSubUnitInfo;						// PML SubUnit Info to the Unit
-	eState 				: E_PMLState;
 END_VAR
 
 VAR
-	fbPML_StateMachine	: PML_StateMachine;							// PML SubUnit State Machine
 	fbConveyor			: FB_GenConveyor;
-	bSubUnitActive 		: BOOL := TRUE;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
 
-fbPML_StateMachine();
+SUPER^();
 fbConveyor();
-
-stSubUnitInfo.Active	:= bSubUnitActive;
-stSubUnitInfo.eState	:= fbPML_StateMachine.eState;
-eState					:= fbPML_StateMachine.eState;
-
-fbPML_StateMachine.eCommand := eUnitStateCommand;
-
-CASE fbPML_StateMachine.eState OF
-	ePMLState_Undefined:
-		M_Undefined();
-	ePMLState_Clearing:
-		M_Clearing();
-	ePMLState_Stopped:
-		M_Stopped();
-	ePMLState_Starting:
-		M_Starting();
-	ePMLState_Idle:
-		M_Idle();
-	ePMLState_Suspended:
-		M_Suspended();
-	ePMLState_Execute:
-		M_Execute();
-	ePMLState_Stopping:
-		M_Stopping();
-	ePMLState_Aborting:
-		M_Aborting();
-	ePMLState_Aborted:
-		M_Aborted();
-	ePMLState_Holding:
-		M_Holding();
-	ePMLState_Held:
-		M_Held();
-	ePMLState_Unholding:
-		M_Unholding();
-	ePMLState_Suspending:
-		M_Suspending();
-	ePMLState_Unsuspending:
-		M_Unsuspending();
-	ePMLState_Resetting:
-		M_Resetting();
-	ePMLState_Completing:
-		M_Completing();
-	ePMLState_Complete:
-		M_Complete();
-END_CASE]]></ST>
+]]></ST>
     </Implementation>
     <Folder Name="PML States" Id="{11baf6e5-7025-4425-8b81-86d279a7aab8}" />
     <Folder Name="SubUnit Code" Id="{f6969854-a0ae-4094-b45b-fd00eb393243}" />

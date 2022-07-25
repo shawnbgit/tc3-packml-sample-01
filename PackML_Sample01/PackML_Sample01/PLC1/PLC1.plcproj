@@ -23,6 +23,9 @@
     <Compile Include="FBs\FB_GenRobot.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FBs\FB_PMLSub.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FBs\FB_PMLUnit.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -89,14 +92,12 @@
   <ItemGroup>
     <Folder Include="GVLs" />
     <Folder Include="FBs" />
-    <Folder Include="Robot Cell Unit_03" />
     <Folder Include="Production Line Unit_00" />
     <Folder Include="Production Line Unit_00\PL Code" />
     <Folder Include="Robot Cell Unit_02" />
     <Folder Include="Robot Cell Unit_01" />
     <Folder Include="Robot Cell Unit_01\SubUnits" />
     <Folder Include="Robot Cell Unit_02\SubUnits" />
-    <Folder Include="Robot Cell Unit_03\SubUnits" />
     <Folder Include="VISUs" />
     <Folder Include="VISUs\Text Lists" />
   </ItemGroup>
