@@ -52,7 +52,7 @@ rtChangeMode (CLK := stPackTags.Command.UnitModeChangeRequest);
 // Outputs to SubUnits		
 eState 			:= fbPML_StateMachine.eState;	// output of local PML state
 eStateCommand	:= fbPML_StateMachine.eCommand;	// output of local PML mode command
-eMode			:= fbPML_StateMachine.eMode;	// output of local PML mode 
+eMode			:= fbPML_StateMachine.eMode	:= fbPML_ModeManager.eModeStatus;	// output of local PML mode 
 
 // Inputs from SubUnits
 fbPML_StateMachine.stSubUnitInfoRef.ArraySize		:= SIZEOF(stSubUnitInfo);
