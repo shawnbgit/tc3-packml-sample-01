@@ -3,13 +3,17 @@
   <POU Name="Production_00" Id="{5dc5c6b7-6f8e-4f7c-94a8-20d2f19a34d3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Production_00
 VAR
-
+i : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
+// write production line commands (from visu) down to each units pack tags
 
-GVL.UnitPackTags[1] := GVL.UnitPackTags[2] := GVL.LineCommands;
+FOR i := 1 TO 4 DO
+	GVL.UnitPackTags[i] :=  GVL.LineCommands;
+END_FOR
+
 ]]></ST>
     </Implementation>
   </POU>
