@@ -20,14 +20,14 @@ END_VAR
     <Implementation>
       <ST><![CDATA[
 IF bStart THEN
-	robotstuff := TRUE;
+	robotstuff	:= TRUE;
 ELSE
-	robotstuff := FALSE;
+	robotstuff	:= FALSE;
 END_IF
 
-bActive	:= robotstuff;
-bAlarm	:= alarm;
-sAlarmMsg		:= alarmMsg;
+	bActive		:= robotstuff;
+	bAlarm		:= alarm;
+	sAlarmMsg	:= alarmMsg;
 
 
 IF bReset THEN

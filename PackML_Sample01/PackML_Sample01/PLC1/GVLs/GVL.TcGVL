@@ -3,7 +3,7 @@
   <GVL Name="GVL" Id="{2bb718b5-10f5-4e26-99ca-be5abeecc303}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	UnitPackTags : ARRAY [1..5] OF ST_PackMLv30Ext ;
+	UnitPackTags : ARRAY [1..4] OF ST_PackMLv30Ext ;
 	LineCommands : ST_PackMLv30Ext;
 END_VAR]]></Declaration>
   </GVL>

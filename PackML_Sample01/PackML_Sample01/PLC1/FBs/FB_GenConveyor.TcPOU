@@ -21,14 +21,14 @@ END_VAR
       <ST><![CDATA[
 
 IF bStart THEN
-	conveyor := TRUE;
+	conveyor 	:= TRUE;
 ELSE
-	conveyor := FALSE;
+	conveyor	:= FALSE;
 END_IF
 
-bActive	:= conveyor;
-bAlarm	:= alarm;
-sAlarmMsg		:= alarmMsg;
+	bActive		:= conveyor;
+	bAlarm		:= alarm;
+	sAlarmMsg	:= alarmMsg;
 
 
 IF bReset THEN
