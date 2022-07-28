@@ -11,7 +11,7 @@ END_VAR
 // write production line commands (from visu) down to each units pack tags
 
 FOR i := 1 TO 4 DO
-	GVL.UnitPackTags[i] :=  GVL.LineCommands;
+	GVL.UnitPackTags[i].Command :=  GVL.LineCommands.Command;
 END_FOR
 
 ]]></ST>

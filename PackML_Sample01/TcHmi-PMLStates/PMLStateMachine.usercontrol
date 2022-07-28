@@ -42,13 +42,37 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%PMLState_Held::BackgroundColor%/ctrl%",
+                "symbolExpression": "%ctrl%PMLState_Holding::BackgroundColor%/ctrl%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
-                    "color": "rgba(241, 214, 18, 1)"
+                    "color": "rgba(45, 136, 45, 1)"
                   }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Holding::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(255, 255, 255, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Holding::TextFontWeight%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/FontWeight",
+                  "value": "Normal"
                 },
                 "asyncWait": true
               }
@@ -59,13 +83,37 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%PMLState_Held::BackgroundColor%/ctrl%",
+                "symbolExpression": "%ctrl%PMLState_Holding::BackgroundColor%/ctrl%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
-                    "color": "rgba(180, 168, 168, 1)"
+                    "color": "rgba(188, 196, 191, 1)"
                   }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Holding::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(0, 0, 0, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Holding::TextFontWeight%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/FontWeight",
+                  "value": "Bold"
                 },
                 "asyncWait": true
               }
@@ -159,16 +207,16 @@
 ]
 </script>
 </div>
-<div id="PMLState_Execute" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="421" data-tchmi-left-unit="px" data-tchmi-text="Execute" data-tchmi-top="152" data-tchmi-top-unit="px" data-tchmi-width="125" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-ignore-escape-sequences="false" data-tchmi-is-enabled="true" data-tchmi-text-font-size="20" data-tchmi-text-font-style="Auto" data-tchmi-text-font-weight="Normal" data-tchmi-zindex="7">
+<div id="PMLState_Execute" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="421" data-tchmi-left-unit="px" data-tchmi-text="Execute" data-tchmi-top="152" data-tchmi-top-unit="px" data-tchmi-width="125" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-ignore-escape-sequences="false" data-tchmi-is-enabled="true" data-tchmi-text-font-size="20" data-tchmi-text-font-style="Auto" data-tchmi-text-font-weight="Bold" data-tchmi-zindex="7">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
-  "color": "rgba(255, 255, 255, 1)"
+  "color": "rgba(0, 0, 0, 1)"
 }
 </script>
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(48, 62, 115, 1)"
+  "color": "rgba(188, 196, 191, 1)"
 }
 </script>
 
@@ -192,7 +240,7 @@
                 "compare2": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/INT",
-                  "value": 11
+                  "value": 6
                 },
                 "compareOperator": "==",
                 "logic": null
@@ -202,13 +250,37 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%PMLState_Held::BackgroundColor%/ctrl%",
+                "symbolExpression": "%ctrl%PMLState_Execute::BackgroundColor%/ctrl%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
-                    "color": "rgba(241, 214, 18, 1)"
+                    "color": "rgba(48, 62, 115, 1)"
                   }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Execute::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(255, 255, 255, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Execute::TextFontWeight%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/FontWeight",
+                  "value": "Normal"
                 },
                 "asyncWait": true
               }
@@ -219,13 +291,37 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%PMLState_Held::BackgroundColor%/ctrl%",
+                "symbolExpression": "%ctrl%PMLState_Execute::BackgroundColor%/ctrl%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
-                    "color": "rgba(180, 168, 168, 1)"
+                    "color": "rgba(188, 196, 191, 1)"
                   }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Execute::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(0, 0, 0, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%PMLState_Execute::TextFontWeight%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/FontWeight",
+                  "value": "Bold"
                 },
                 "asyncWait": true
               }

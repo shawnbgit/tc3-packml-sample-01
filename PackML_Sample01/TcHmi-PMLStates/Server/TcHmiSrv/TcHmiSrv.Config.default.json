@@ -2321,6 +2321,46 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL.UnitPackTags.1.Command.UnitMode": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::UnitPackTags[1]::Command::UnitMode",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.UnitPackTags.1.Command.UnitModeChangeRequest": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::UnitPackTags[1]::Command::UnitModeChangeRequest",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.UnitPackTags.1.Status.StateCurrent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::UnitPackTags[1]::Status::StateCurrent",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.UnitPackTags.1.Status.UnitModeCurrent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::UnitPackTags[1]::Status::UnitModeCurrent",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3161,6 +3201,10 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.GVL.UnitPackTags.1.Command.UnitMode": 3,
+                "PLC1.GVL.UnitPackTags.1.Command.UnitModeChangeRequest": 3,
+                "PLC1.GVL.UnitPackTags.1.Status.StateCurrent": 3,
+                "PLC1.GVL.UnitPackTags.1.Status.UnitModeCurrent": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,
