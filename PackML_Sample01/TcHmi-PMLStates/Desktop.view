@@ -1,0 +1,4 @@
+﻿<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%" data-tchmi-creator-viewport-width="1360" data-tchmi-creator-viewport-height="768" data-tchmi-is-enabled="true">
+<div id="PMLStateMachine_1" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="651" data-tchmi-height-unit="px" data-tchmi-left="22" data-tchmi-left-unit="px" data-tchmi-pmlc_unitmodechange="false" data-tchmi-pmlc_unitstatechange="false" data-tchmi-target-user-control="PMLStateMachine.usercontrol" data-tchmi-top="21" data-tchmi-top-unit="px" data-tchmi-width="969" data-tchmi-width-unit="px" data-tchmi-is-enabled="true" data-tchmi-width-mode="Value" data-tchmi-height-mode="Value">
+</div>
+</div>
