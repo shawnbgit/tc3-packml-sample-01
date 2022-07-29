@@ -52,10 +52,21 @@
   ],
   "userControls": [
     {
+      "url": "PMLStateMachine-Dynamic.usercontrol"
+    },
+    {
       "url": "PMLStateMachine.usercontrol"
     }
   ],
-  "content": [],
+  "content": [
+    {
+      "url": "PMLStatus.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    }
+  ],
   "views": [
     {
       "url": "Desktop.view",

@@ -136,12 +136,22 @@
     <Content Include="Imports\Images\arrow_circle_up_FILL0_wght300_GRAD200_opsz48.svg">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="PMLStateMachine-Dynamic.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="PMLStateMachine-Dynamic.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>PMLStateMachine-Dynamic.usercontrol</DependentUpon>
+    </Content>
     <Content Include="PMLStateMachine.usercontrol">
       <SubType>Content</SubType>
     </Content>
     <Content Include="PMLStateMachine.usercontrol.json">
       <SubType>Content</SubType>
       <DependentUpon>PMLStateMachine.usercontrol</DependentUpon>
+    </Content>
+    <Content Include="PMLStatus.content">
+      <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">
       <SubType>Content</SubType>
