@@ -153,6 +153,13 @@
     <Content Include="PMLStatus.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="PMLSubUnitStatus.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="PMLSubUnitStatus.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>PMLSubUnitStatus.usercontrol</DependentUpon>
+    </Content>
     <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">
       <SubType>Content</SubType>
     </Content>

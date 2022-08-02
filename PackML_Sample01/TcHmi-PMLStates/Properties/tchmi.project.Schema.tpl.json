@@ -8,6 +8,14 @@
       "frameworkUserControlConfig": "PMLStateMachine.usercontrol.json",
       "id": "tchmi:project#/definitions/PMLStateMachine",
       "type": "object"
+    },
+    "PMLSubUnitStatus": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "PMLSubUnitStatus.usercontrol.json",
+      "id": "tchmi:project#/definitions/PMLSubUnitStatus",
+      "type": "object"
     }
   }
 }

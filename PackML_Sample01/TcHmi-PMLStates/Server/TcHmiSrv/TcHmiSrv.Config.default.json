@@ -26,7 +26,111 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC1.Tc3_PackML_V2.E_PMLState": {
+            "allOf": [
+                {
+                    "enum": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        13,
+                        14,
+                        15,
+                        16,
+                        17
+                    ],
+                    "options": [
+                        {
+                            "label": "ePMLState_Undefined",
+                            "value": 0
+                        },
+                        {
+                            "label": "ePMLState_Clearing",
+                            "value": 1
+                        },
+                        {
+                            "label": "ePMLState_Stopped",
+                            "value": 2
+                        },
+                        {
+                            "label": "ePMLState_Starting",
+                            "value": 3
+                        },
+                        {
+                            "label": "ePMLState_Idle",
+                            "value": 4
+                        },
+                        {
+                            "label": "ePMLState_Suspended",
+                            "value": 5
+                        },
+                        {
+                            "label": "ePMLState_Execute",
+                            "value": 6
+                        },
+                        {
+                            "label": "ePMLState_Stopping",
+                            "value": 7
+                        },
+                        {
+                            "label": "ePMLState_Aborting",
+                            "value": 8
+                        },
+                        {
+                            "label": "ePMLState_Aborted",
+                            "value": 9
+                        },
+                        {
+                            "label": "ePMLState_Holding",
+                            "value": 10
+                        },
+                        {
+                            "label": "ePMLState_Held",
+                            "value": 11
+                        },
+                        {
+                            "label": "ePMLState_Unholding",
+                            "value": 12
+                        },
+                        {
+                            "label": "ePMLState_Suspending",
+                            "value": 13
+                        },
+                        {
+                            "label": "ePMLState_Unsuspending",
+                            "value": 14
+                        },
+                        {
+                            "label": "ePMLState_Resetting",
+                            "value": 15
+                        },
+                        {
+                            "label": "ePMLState_Completing",
+                            "value": 16
+                        },
+                        {
+                            "label": "ePMLState_Complete",
+                            "value": 17
+                        }
+                    ]
+                },
+                {
+                    "$ref": "tchmi:general#/definitions/INT32"
+                }
+            ]
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2361,6 +2465,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.PackML_01.fbInfeed.eState": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::PackML_01::fbInfeed::eState",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.Tc3_PackML_V2.E_PMLState"
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3205,6 +3319,7 @@
                 "PLC1.GVL.UnitPackTags.1.Command.UnitModeChangeRequest": 3,
                 "PLC1.GVL.UnitPackTags.1.Status.StateCurrent": 3,
                 "PLC1.GVL.UnitPackTags.1.Status.UnitModeCurrent": 3,
+                "PLC1.PackML_01.fbInfeed.eState": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,

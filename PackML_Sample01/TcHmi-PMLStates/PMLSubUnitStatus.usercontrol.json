@@ -1,0 +1,40 @@
+﻿{
+  "parameters": [
+    {
+      "name": "data-tchmi-pmlstate",
+      "displayName": "PMLState",
+      "visible": true,
+      "type": "tchmi:server#/definitions/PLC1.Tc3_PackML_V2.E_PMLState",
+      "category": "",
+      "description": "",
+      "defaultValue": "0",
+      "requiredOnCompile": false,
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "propertyName": "PMLState",
+      "propertySetterName": "setPMLState",
+      "propertyGetterName": "getPMLState",
+      "refTo": ""
+    },
+    {
+      "name": "data-tchmi-subunitname",
+      "displayName": "SubUnitName",
+      "visible": true,
+      "type": "tchmi:general#/definitions/String",
+      "category": "",
+      "description": "",
+      "requiredOnCompile": false,
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "propertyName": "SubUnitName",
+      "propertySetterName": "setSubUnitName",
+      "propertyGetterName": "getSubUnitName",
+      "refTo": ""
+    }
+  ],
+  "virtualRights": [],
+  "$schema": "./../Packages/Beckhoff.TwinCAT.HMI.Framework.12.756.1/runtimes/native1.12-tchmi/Schema/UserControlConfig.Schema.json",
+  "description": ""
+}

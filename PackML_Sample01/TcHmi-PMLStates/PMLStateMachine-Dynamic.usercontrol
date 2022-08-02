@@ -127,7 +127,7 @@
 ]
 </script>
 </div>
-<div id="PMLState_Unholding_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="8.2" data-tchmi-height-unit="%" data-tchmi-left="23.2" data-tchmi-left-unit="%" data-tchmi-text="Unholding" data-tchmi-top="5.7" data-tchmi-top-unit="%" data-tchmi-width="12.9" data-tchmi-width-unit="%" data-tchmi-word-wrap="true" data-tchmi-ignore-escape-sequences="false" data-tchmi-is-enabled="true" data-tchmi-text-font-size="150" data-tchmi-text-font-style="Auto" data-tchmi-text-font-weight="Bold" data-tchmi-zindex="6" data-tchmi-text-font-size-unit="%">
+<div id="PMLState_Unholding_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="8.2" data-tchmi-height-unit="%" data-tchmi-left="23.2" data-tchmi-left-unit="%" data-tchmi-text="Unholding" data-tchmi-top="5.7" data-tchmi-top-unit="%" data-tchmi-width="12.9" data-tchmi-width-unit="%" data-tchmi-word-wrap="true" data-tchmi-ignore-escape-sequences="false" data-tchmi-is-enabled="true" data-tchmi-text-font-size="150" data-tchmi-text-font-style="Auto" data-tchmi-text-font-weight="Auto" data-tchmi-zindex="6" data-tchmi-text-font-size-unit="%" data-tchmi-right-unit="%" data-tchmi-bottom-unit="%" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(0, 0, 0, 1)"
