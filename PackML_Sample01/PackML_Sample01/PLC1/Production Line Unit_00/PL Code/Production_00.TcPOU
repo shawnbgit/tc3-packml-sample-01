@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM Production_00
 VAR
 i : INT;
+doSomething: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -14,6 +15,14 @@ FOR i := 1 TO 4 DO
 	GVL.UnitPackTags[i].Command :=  GVL.LineCommands.Command;
 END_FOR
 
+
+// read unit status to determine next step for higher level commands
+
+IF GVL.UnitPackTags[1].Status.StateCurrent <> GVL.UnitPackTags[2].Status.StateCurrent THEN
+	doSomething := TRUE;
+ELSE
+	doSomething := FALSE;
+END_IF
 ]]></ST>
     </Implementation>
   </POU>

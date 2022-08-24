@@ -3,11 +3,11 @@
   <POU Name="PackML_02" Id="{5fab7823-76d2-44a1-a0a8-268ea7e9a805}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PackML_02
 VAR
-	fbRobotCell			: FB_Cell_02;
-	fbInfeed 			: FB_Infeed_02_01;
-	fbScara				: FB_Scara_02_02;
-	fbDischarge			: FB_Discharge_02_03;
-	stPMLSubUnitInfo	: ARRAY [1..4] OF ST_PMLSubUnitInfo;	//Informations about the Subunits
+	fbRobotCell			: FB_Cell_02;							// Unit, Machine Cell
+	fbInfeed 			: FB_Infeed_02_01;						// SubUnit, Infeed Conveyor
+	fbScara				: FB_Scara_02_02;						// SubUnit, Scara Robot
+	fbDischarge			: FB_Discharge_02_03;					// SubUnit, Discharge Conveyor
+	stPMLSubUnitInfo	: ARRAY [1..4] OF ST_PMLSubUnitInfo;	// Information about the Subunits
 END_VAR
 ]]></Declaration>
     <Implementation>
