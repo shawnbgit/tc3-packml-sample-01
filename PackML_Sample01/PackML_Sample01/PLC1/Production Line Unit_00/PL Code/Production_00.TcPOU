@@ -12,11 +12,11 @@ END_VAR
 // write production line commands (from visu) down to each units pack tags
 
 FOR i := 1 TO 4 DO
-	GVL.UnitPackTags[i].Command :=  GVL.LineCommands.Command;
+	GVL.UnitPackTags[i].Command :=  GVL.LinePackTags.Command;
 END_FOR
 
 
-// read unit status to determine next step for higher level commands
+// read unit status from each of the units pack tags
 
 IF GVL.UnitPackTags[1].Status.StateCurrent <> GVL.UnitPackTags[2].Status.StateCurrent THEN
 	doSomething := TRUE;

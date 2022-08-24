@@ -10,8 +10,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SUPER^();
-
+      <ST><![CDATA[
+SUPER^();	// a call to the parent class FB_PMLUnit
 A_Alarms();]]></ST>
     </Implementation>
     <Folder Name="PML States" Id="{0285f8cc-7f0c-46fa-8f34-a040aed8a29b}" />

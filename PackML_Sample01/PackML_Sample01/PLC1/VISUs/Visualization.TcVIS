@@ -168,7 +168,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"GVL.LineCommands.Command.CntrlCmd"</v>
+                      <v n="Value">"GVL.LinePackTags.Command.CntrlCmd"</v>
                     </o>
                     <o>
                       <v n="Id">2114174855L</v>
@@ -198,7 +198,11 @@
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
                           <v n="Id">1186196937L</v>
-                          <v n="Value">"GVL.LineCommands.Command.UnitModeChangeRequest"</v>
+                          <v n="Value">"GVL.LinePackTags.Command.UnitModeChangeRequest"</v>
+                        </o>
+                        <o>
+                          <v n="Id">1329445385L</v>
+                          <v n="Value">true</v>
                         </o>
                       </l>
                     </o>
@@ -249,7 +253,7 @@
                     </o>
                     <o>
                       <v n="Id">1647042231L</v>
-                      <v n="Value">"&lt;toggle/tap variable&gt;"</v>
+                      <v n="Value">"&lt;NOT toggle/tap variable&gt;"</v>
                     </o>
                     <o>
                       <v n="Id">2812299069L</v>
@@ -532,7 +536,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"GVL.LineCommands.Command.UnitMode"</v>
+                      <v n="Value">"GVL.LinePackTags.Command.UnitMode"</v>
                     </o>
                     <o>
                       <v n="Id">2114174855L</v>
@@ -562,7 +566,11 @@
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
                           <v n="Id">1186196937L</v>
-                          <v n="Value">"GVL.LineCommands.Command.CmdChangeRequest"</v>
+                          <v n="Value">"GVL.LinePackTags.Command.CmdChangeRequest"</v>
+                        </o>
+                        <o>
+                          <v n="Id">1329445385L</v>
+                          <v n="Value">true</v>
                         </o>
                       </l>
                     </o>
@@ -613,7 +621,7 @@
                     </o>
                     <o>
                       <v n="Id">1647042231L</v>
-                      <v n="Value">"&lt;toggle/tap variable&gt;"</v>
+                      <v n="Value">"&lt;NOT toggle/tap variable&gt;"</v>
                     </o>
                     <o>
                       <v n="Id">2812299069L</v>
@@ -3742,10 +3750,10 @@
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>5b912cbe-e333-4944-a665-093a783c6978</v>
-                <v>FB_Reinit</v>
-                <v>33fde213-5eb2-41df-8936-28aa46baefad</v>
                 <v>FB_Exit</v>
                 <v>3eb28f4a-3bdf-4e14-af33-399bfd29fb6b</v>
+                <v>FB_Reinit</v>
+                <v>33fde213-5eb2-41df-8936-28aa46baefad</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{4837a58d-a7da-4e6b-b673-33974e136e46}</v>
